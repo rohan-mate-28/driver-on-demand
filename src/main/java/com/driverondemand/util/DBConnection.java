@@ -5,10 +5,14 @@ import java.sql.DriverManager;
 
 public class DBConnection {
 
-    private static final String URL = 
-        "jdbc:mysql://localhost:3306/driver_on_door";
-    private static final String USER = "root";
-    private static final String PASSWORD = "mysql@root";
+    private static final String URL =
+        System.getenv("DB_URL");
+
+    private static final String USER =
+        System.getenv("DB_USER");
+
+    private static final String PASSWORD =
+        System.getenv("DB_PASSWORD");
 
     public static Connection getConnection() {
         try {
@@ -16,7 +20,7 @@ public class DBConnection {
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Database connection failed");
         }
     }
 }
