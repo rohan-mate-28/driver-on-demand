@@ -14,6 +14,8 @@ public class DBConnection {
     private static final String PASSWORD =
         System.getenv("DB_PASSWORD");
 
+        System.out.println("URL=" + URL);
+System.out.println("USER=" + USER);
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
