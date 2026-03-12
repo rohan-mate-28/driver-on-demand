@@ -5,21 +5,19 @@ import java.sql.DriverManager;
 
 public class DBConnection {
 
-    private static final String URL =
-        System.getenv("DB_URL");
+    private static final String URL = System.getenv("DB_URL");
+    private static final String USER = System.getenv("DB_USER");
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
-    private static final String USER =
-        System.getenv("DB_USER");
-
-    private static final String PASSWORD =
-        System.getenv("DB_PASSWORD");
-
-        System.out.println("URL=" + URL);
-System.out.println("USER=" + USER);
     public static Connection getConnection() {
         try {
+
+            System.out.println("DB_URL = " + URL);
+            System.out.println("DB_USER = " + USER);
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(URL, USER, PASSWORD);
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Database connection failed");
